@@ -1586,7 +1586,9 @@ vnr_window_cmd_delete(GtkAction *action, VnrWindow *window)
         GError *error = NULL;
 
         file = g_file_new_for_path(file_path);
-        g_file_delete(file, NULL, &error);
+		// Hacked move of file to trash instead of deleting (should be made to work where trash isn't supported)
+        //g_file_delete(file, NULL, &error);
+		g_file_trash (file, NULL, &error);
 
         if( error != NULL )
         {
